@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja">
-<title>Weight100kg</title>
 <head>
     <meta charset="UTF-8">
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weight100kg.Dev</title>
-    <link rel="stylesheet" href="styles.css">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@800&display=swap');
+
         /* 基本スタイル */
         body {
             font-family: 'Arial', sans-serif;
@@ -20,12 +20,13 @@
             height: 100vh;
         }
 
-        /*　ヘッダー　*/
+        /* ヘッダー */
         header {
+            color: #fff;
             background-color: #fff;
             padding: 20px;
             text-align: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 5px rgba(0 0 0 0.1);
         }
 
         /* メインコンテンツ */
@@ -38,10 +39,11 @@
 
         /* フッター */
         footer {
+            color: #fff;
             background-color: #fff;
             padding: 20px;
             text-align: center;
-            box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 -2px 5px rgba(0 0 0 0.1);
         }
 
         /* リンク */
@@ -53,58 +55,54 @@
         a:hover {
             text-decoration: underline;
         }
+
+        .text-gradient {
+            font-size: 4rem;
+            display: inline-block;
+            background: linear-gradient(9deg, #ffde65, #ff8484 50%,#ff86c3 60%, #716fff 80%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .video-container {
+            width: 80vw; /* viewportの80% */
+            height: 80dvh; /* viewportの80% */
+            position: relative;
+        }
     </style>
 </head>
 <body>
 
-<!-- ヘッダー -->
-<header>
-    <h1 class="text-gradient">Weight100kg.Dev</h1>
-</header>
+    <!-- ヘッダー -->
+    <header>
+        <h1 class="text-gradient">Weight100kg.Dev</h1>
+    </header>
 
-<!-- ã¡ã¤ã³ã³ã³ãã³ã -->
+    <main>
+        <div class="video-container">
+            <video id="video" width="100%" autoplay muted></video>
+        </div>
+    </main>
 
-
-
-<main>
-    
-
-
-    <div class="video-container">
-         <!-- autoplay?muted????? -->
-         <video id="video" width="100%" autoplay muted></video>
-    </div>
+    <!-- フッター -->
+    <footer>
+        <a href="https://blog.weight100kg.dev/" target="_blank" rel="noopener noreferrer">blog</a>
+    </footer>
 
     <script>
-        
-        document.addEventListener('DOMContentLoaded', function() {
-            if (Hls.isSupported()) {
-                var hls = new Hls();
-                var video = document.getElementById('video');
-                
-            
-                hls.loadSource('/stream/stream.m3u8');
-                
-                hls.attachMedia(video);
-                hls.on(Hls.Events.MANIFEST_PARSED, function() {
-                    video.play(); // ?????????autoplay?????????????????
-                });
-            }
+        document.addEventListener('DOMContentLoaded', function () {
+            if (!Hls.isSupported()) return;
+
+            const hls = new Hls();
+            const video = document.getElementById('video');
+
+            hls.loadSource('/stream/stream.m3u8');
+
+            hls.attachMedia(video);
+            hls.on(Hls.Events.MANIFEST_PARSED, function () {
+                video.play();
+            });
         });
-        
     </script>
-</main>
-        
-
-    
-        
-
-
-<!-- フッター -->
-<footer>
-    <a href="https://blog.weight100kg.dev/"target="_blank" rel="noopener noreferrer">blog</a>
-</footer>
-
 </body>
 </html>
-
